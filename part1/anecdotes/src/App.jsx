@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -8,29 +10,35 @@ const App = () => {
     'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
-    'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
+    'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when dianosing patients.',
     'The only way to go fast, is to go well.'
   ]
+   
+  const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Uint8Array(anecdotes.length))
+  const copy = { ...votes }
+  let top = Object.keys(votes).reduce((a,b) => votes[a] >= votes[b] ? a : b)
+  let amt = Object.values(votes).reduce((a,b) => a >= b ? a : b)
 
-  const [selected, setSelected] = useState(Math.floor(Math.random()*anecdotes.length))
-  const [votes, setVotes] = useState({0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0})
-  const copy  = { ...votes }
-  let top = Object.keys(votes).reduce((a,b) => votes[a] > votes[b] ? a : b)
-  let amt = Object.values(votes).reduce((a,b) => a > b ? a : b)
-  
   return (
     <div>
-      <h1>Anecdote of the day</h1>
-      <p>{anecdotes[selected]}</p>
-      <p>has {votes[selected]} votes</p>
-      <button onClick = {() => setVotes(copy, copy[selected] += 1)}> vote </button>
-      <button onClick = {() => setSelected(Math.floor(Math.random()*anecdotes.length))}> next anecdote </button>
-      <h1>Anecdote with most votes</h1>
-      <p>{anecdotes[top]}</p>
-      <p>has {amt} votes</p>
+      <h1>
+        Anecdote of the day
+      </h1>
+      {anecdotes[selected]}
+      <br/>
+      has {copy[selected]} votes
+      <br/>
+      <Button text={"vote"} onClick={() => (setVotes(copy, copy[selected]+=1))}/>
+      <Button text={"next anecdote"} onClick={() => (setSelected(Math.floor(Math.random()*anecdotes.length)))}/>
+      <h1>
+        Anecdote with most votes
+      </h1>
+      {anecdotes[top]}
+      <br/>
+      has {amt} votes
     </div>
   )
 }
 
 export default App
-
