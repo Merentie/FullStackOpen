@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import countryService from './services/countries'
 
 const Display = ({info, countries, setcountries, weather}) => {
-  console.log(weather)
   if (countries.length == 1) {
     return (
       <div>
