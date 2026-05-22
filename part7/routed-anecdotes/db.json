@@ -1,0 +1,54 @@
+{
+  "anecdotes": [
+    {
+      "content": "testing 123",
+      "author": "ewgewg",
+      "info": "gewfewf",
+      "votes": 0,
+      "id": "UPt7L7Stqqo"
+    },
+    {
+      "content": "wegewg",
+      "author": "gewgew",
+      "info": "tgewgew",
+      "votes": 0,
+      "id": "QDhOGxc3CAo"
+    },
+    {
+      "content": "nopee",
+      "author": "fesg",
+      "info": "gwg",
+      "votes": 0,
+      "id": "Uq_MloOIoFg"
+    },
+    {
+      "content": "juttu",
+      "author": "ewfewg",
+      "info": "ewfewf",
+      "votes": 0,
+      "id": "ACXNaYr86rU"
+    },
+    {
+      "content": "wef",
+      "author": "gweg",
+      "info": "ewgew",
+      "votes": 0,
+      "id": "gKiZKpzqM78"
+    },
+    {
+      "content": "wo ou",
+      "author": "ewgewg",
+      "info": "ewgewgew",
+      "votes": 0,
+      "id": "TN6HC8vHb5M"
+    },
+    {
+      "content": "then testi",
+      "author": "ewfesg",
+      "info": "ewgew",
+      "votes": 0,
+      "id": "HAcYHMPKqJo"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
