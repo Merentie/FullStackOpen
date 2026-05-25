@@ -2,6 +2,7 @@ import { useField } from '../hooks'
 import { useNavigate } from 'react-router-dom'
 import { useNotificationActions } from '../stores/notificationStore'
 import { useBlogActions } from '../stores/blogStore'
+import { TextField, Button, Typography, Box } from '@mui/material'
 import blogService from '../services/blogs'
 
 const BlogForm = () => {
@@ -31,49 +32,56 @@ const BlogForm = () => {
   const addBlog = (event) => {
     event.preventDefault()
     handleNewBlog({
-      title: newTitle,
-      author: newAuthor,
-      url: newUrl,
+      title: newTitle.value,
+      author: newAuthor.value,
+      url: newUrl.value,
     })
   }
 
   return (
-    <div>
-      <h2> Add a new blog </h2>
+    <Box>
+      <Typography variant='h4' sx={{ marginTop: 1 }}>
+        Add a new blog
+      </Typography>
       <form onSubmit={addBlog}>
         <div>
-          <label>
-            title:
-            <input
-              type='text'
-              value={newTitle.value}
-              onChange={newTitle.onChange}
-            />
-          </label>
+          <TextField
+            id='outline-controlled'
+            type='text'
+            size='small'
+            label='title'
+            sx={{ marginTop: 1 }}
+            value={newTitle.value}
+            onChange={newTitle.onChange}
+          />
         </div>
         <div>
-          <label>
-            author:
-            <input
-              type='text'
-              value={newAuthor.value}
-              onChange={newAuthor.onChange}
-            />
-          </label>
+          <TextField
+            id='outline-controlled'
+            type='text'
+            size='small'
+            label='author'
+            sx={{ marginTop: 1 }}
+            value={newAuthor.value}
+            onChange={newAuthor.onChange}
+          />
         </div>
         <div>
-          <label>
-            url:
-            <input
-              type='text'
-              value={newUrl.value}
-              onChange={newUrl.onChange}
-            />
-          </label>
+          <TextField
+            id='outline-controlled'
+            type='text'
+            size='small'
+            label='url'
+            sx={{ marginTop: 1 }}
+            value={newUrl.value}
+            onChange={newUrl.onChange}
+          />
         </div>
-        <button type='submit'>save</button>
+        <Button variant='contained' type='submit' sx={{ marginTop: 1.5 }}>
+          save
+        </Button>
       </form>
-    </div>
+    </Box>
   )
 }
 

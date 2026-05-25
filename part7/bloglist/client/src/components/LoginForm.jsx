@@ -5,6 +5,7 @@ import persistentUserService from '../services/persistentUser'
 import { useNotificationActions } from '../stores/notificationStore'
 import { useUserActions } from '../stores/userStore'
 import { useNavigate } from 'react-router-dom'
+import { TextField, Button, Typography, Box } from '@mui/material'
 
 const LoginForm = () => {
   const username = useField('username')
@@ -31,29 +32,35 @@ const LoginForm = () => {
   }
   return (
     <div>
-      <h2>Login</h2>
+      <Typography variant='h4' sx={{ marginTop: 1 }}>
+        Login
+      </Typography>
       <form onSubmit={handleLogin}>
         <div>
-          <label>
-            username
-            <input
-              type='text'
-              value={username.value}
-              onChange={username.onChange}
-            />
-          </label>
+          <TextField
+            id='outline-controlled'
+            type='text'
+            size='small'
+            label='username'
+            sx={{ marginTop: 1 }}
+            value={username.value}
+            onChange={username.onChange}
+          />
         </div>
         <div>
-          <label>
-            password
-            <input
-              type='password'
-              value={password.value}
-              onChange={password.onChange}
-            />
-          </label>
+          <TextField
+            id='outline-controlled'
+            type='password'
+            size='small'
+            label='password'
+            sx={{ marginTop: 1 }}
+            value={password.value}
+            onChange={password.onChange}
+          />
         </div>
-        <button type='submit'>login</button>
+        <Button variant='contained' type='submit' sx={{ marginTop: 1.5 }}>
+          login
+        </Button>
       </form>
     </div>
   )

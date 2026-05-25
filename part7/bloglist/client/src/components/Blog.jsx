@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useMatch, useNavigate } from 'react-router-dom'
 import blogService from '../services/blogs'
 import { useUser } from '../stores/userStore'
-import { TextField, Button } from '@mui/material'
+import { TextField, Button, Typography, Box } from '@mui/material'
 
 const Blog = () => {
   const [comment, setComment] = useState('')
@@ -45,10 +45,10 @@ const Blog = () => {
 
   const blogStyle = {
     paddingTop: 10,
-    paddingLeft: 2,
+    paddingLeft: 10,
     border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5,
+    borderWidth: 0.5,
+    paddingBottom: 10,
   }
 
   if (!blog) {
@@ -59,24 +59,48 @@ const Blog = () => {
 
   return (
     <div style={blogStyle} className='blog'>
-      <h1>{blog.title}</h1>
-      by {blog.author}
       <div>
-        <a href={blog.url}>{blog.url}</a>
-        <div>Added by {blog.user.name}</div>
+        <Typography variant='h4'>{blog.title}</Typography>
+      </div>
+      <Typography variant='h6'>by {blog.author}</Typography>
+      <div>
+        <Typography variant='subtitle1'>
+          <a href={blog.url}>{blog.url}</a>
+        </Typography>
         <div>
-          likes: {blog.likes}
-          {loggedUser && (
-            <button onClick={() => handleLike(blog)}> like </button>
-          )}
+          <Typography variant='body1'>Added by {blog.user.name}</Typography>
+        </div>
+        <div>
+          <Typography variant='body1'>
+            {blog.likes} likes
+            {loggedUser && (
+              <Button
+                variant='outlined'
+                sx={{ marginLeft: 0.5 }}
+                onClick={() => handleLike(blog)}
+              >
+                like
+              </Button>
+            )}
+          </Typography>
         </div>
         {username === blog.user.username && (
           <div>
-            <button onClick={() => handleRemove(blog)}> remove </button>
+            <Button
+              variant='contained'
+              sx={{ marginTop: 0.75 }}
+              onClick={() => handleRemove(blog)}
+            >
+              remove
+            </Button>
           </div>
         )}
       </div>
-      <h2>comments</h2>
+      <div>
+        <Typography variant='h5' sx={{ marginTop: 1 }}>
+          comments
+        </Typography>
+      </div>
       {loggedUser && (
         <div>
           <form

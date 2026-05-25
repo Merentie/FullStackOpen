@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
-import { Button, AppBar, Toolbar, Box } from '@mui/material'
+import { Button, AppBar, Toolbar, Box, Typography } from '@mui/material'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import Notification from './components/Notification'
@@ -21,11 +21,11 @@ const App = () => {
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs))
-  })
+  }, [setBlogs])
 
   useEffect(() => {
     userService.getAll().then((users) => setUsers(users))
-  })
+  }, [setUsers])
 
   useEffect(() => {
     const loggedUserJSON = persistentUserService.getUser()
@@ -47,7 +47,7 @@ const App = () => {
     <div>
       <AppBar position='static'>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <h2>Blapp</h2>
+          <Typography variant='h4'>Blapp</Typography>
           <Box>
             <Button color='inherit' component={Link} to='/'>
               blogs

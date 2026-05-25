@@ -1,29 +1,54 @@
 import { Link } from 'react-router-dom'
 import { useUsers } from '../stores/userStore'
-import { Table, TableRow, TableCell, TableBody, TableHead } from '@mui/material'
+import {
+  Table,
+  TableRow,
+  TableCell,
+  TableBody,
+  TableHead,
+  Typography,
+} from '@mui/material'
 
 const UserList = () => {
   const users = useUsers()
-
   return (
     <div>
-      <h2>Users</h2>
+      <Typography variant='h4' sx={{ marginTop: 1 }}>
+        Users
+      </Typography>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell> Name </TableCell>
-            <TableCell> Username </TableCell>
-            <TableCell> Blogs created </TableCell>
+            <TableCell>
+              <Typography variant='h5'> Name </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant='h5'> Username </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant='h5'> Blogs created </Typography>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}>
               <TableCell>
-                <Link to={`/users/${user.id}`}>{user.name} </Link>
+                <Typography variant='body1'>
+                  <Link
+                    to={`/users/${user.id}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    {user.name}
+                  </Link>
+                </Typography>
               </TableCell>
-              <TableCell> {user.username}</TableCell>
-              <TableCell>{user.blogs.length}</TableCell>
+              <TableCell>
+                <Typography variant='body1'> {user.username}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant='body1'>{user.blogs.length} </Typography>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
